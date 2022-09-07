@@ -22,8 +22,8 @@ const TabNavigator = props => {
             tabBarIconStyle: {display: 'none'},
         }}
     >
-        <Tab.Screen name={'Lists'} component={'ListsScreen'}/>
-        <Tab.Screen name={'Items'} component={'ItemsScreen'}/>
+        <Tab.Screen name={'Lists'} component={ListsScreen}/>
+        <Tab.Screen name={'Items'} component={ItemsScreen}/>
     </Tab.Navigator>
   );
 };
