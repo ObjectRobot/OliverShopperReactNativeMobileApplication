@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, Pressable} from 'react-native';
+import {Text, TextInput, View, Pressable, Alert} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 // import openDatabase hook
@@ -8,8 +8,6 @@ import { openDatabase } from "react-native-sqlite-storage"
 // use hook to create database
 const shopperDB = openDatabase({name: 'Shopper.db'});
 const listsTableName = 'lists';
-
-
 
 const ExistingListScreen = props => {
 
@@ -54,7 +52,37 @@ const ExistingListScreen = props => {
     }
 
     const onListDelete = () => {
-       
+       return Alert.alert(
+        // title
+        'Confirm',
+        // message
+        'Are you sure you want to delete this list?',
+        // buttons
+            [
+                {
+                    text: 'Yes',
+                    onPress: () => {
+                        shopperDB.transaction(txn => {
+                            txn.executeSql(
+                                `DELETE FROM ${listsTableName} WHERE id = ${post.id}`,
+                                [],
+                                () => {
+                                    console.log(`${name} deleted successfully`);
+                                },
+                                error => {
+                                    console.log('Error on deleting list' + error.message);
+                            }
+                            );
+                        });
+                        alert('List Deleted!');
+                        navigation.navigate('Start Shopping!');
+                    },
+                },
+                {
+                    text: 'No',
+                },
+            ],
+       );
     }
 
     const onAddItem = () => {
