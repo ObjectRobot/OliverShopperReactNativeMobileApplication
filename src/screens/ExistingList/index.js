@@ -8,6 +8,7 @@ import { openDatabase } from "react-native-sqlite-storage"
 // use hook to create database
 const shopperDB = openDatabase({name: 'Shopper.db'});
 const listsTableName = 'lists';
+const itemsTableName = 'items';
 
 const ExistingListScreen = props => {
 
@@ -86,6 +87,28 @@ const ExistingListScreen = props => {
     }
 
     const onAddItem = () => {
+
+        if(!name){
+            alert('Please enter an item name.')
+            return;
+        }
+        if (!price){
+            alert('Please enter a price.');
+            return;
+        }
+        if (!quantity){
+            alert('Please enter a quantity.');
+            return;
+        }
+
+        try {
+            database.addItem(name, price, quantity);
+        } catch (error) {
+            console.log('Error adding item ' + error);
+        }
+
+        alert(name + ' Added!');
+        navigation.navigate('Start Shopping!');
         
     }
 
