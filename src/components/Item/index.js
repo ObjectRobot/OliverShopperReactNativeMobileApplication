@@ -11,6 +11,7 @@ const Item = props => {
     const navigation = useNavigation();
 
     const onPress = () => {
+        console.log(post.list_id);
         if (post.list_id){
             // Add List Item screen is using me
             try {

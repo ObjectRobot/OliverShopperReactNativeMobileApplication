@@ -8,7 +8,7 @@ import { openDatabase } from "react-native-sqlite-storage"
 
 // use hook to create database
 const shopperDB = openDatabase({name: 'Shopper.db'});
-const listitemsTableName = 'list_items';
+const itemsTableName = 'items';
 
 const AddListItemScreen = props => {
 
@@ -26,7 +26,7 @@ const AddListItemScreen = props => {
        shopperDB.transaction(txn => {
           // execute SELECT
           txn.executeSql(
-            `SELECT * FROM ${listitemsTableName}`,
+            `SELECT * FROM ${itemsTableName}`,
             [],
             // callback function to handle the results from the
             // SELECT s

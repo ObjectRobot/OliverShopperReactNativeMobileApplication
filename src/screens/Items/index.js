@@ -51,54 +51,55 @@ const ItemsScreen = props => {
                 /*
                 [
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 1
+                    name: Redner
+                    price: 5.99
+                    quantity: 2
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 2
+                    name: Silly watch
+                    price: 9.99
+                    quantity: 3
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 3
+                    name: Football
+                    price: 7.99
+                    quantity: 1
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 4
+                    name: GI Joe
+                    price: 5.99
+                    quantity: 1
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 5
+                    name: Glasses
+                    price: 12.99
+                    quantity: 1
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 6
+                    name: Soccer Ball
+                    price: 8.99
+                    quantity: 1
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 7
+                    name: Milk
+                    price: 4.99
+                    quantity: 1
                   },
                   {
-                    id:
-                    name:
-                    price:
-                    quantity:
+                    id: 8
+                    name: Orange Juice
+                    price: 5.99
+                    quantity: 1
                   },
-                ]
+        
+               // ] /*/
               } else {
                 // if no rows of data were returned,
                 // set lists state variable to an empty array
