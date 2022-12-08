@@ -5,11 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import bcrypt from 'react-native-bcrypt';
 import { openDatabase } from "react-native-sqlite-storage"
+import database from '../../components/Handlers/database';
 
 const shopperDB = openDatabase({name: 'Shopper.db'});
 const usersTableName = 'users';
 
-const HomeScreen = () => {
+const SignUpScreen = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,20 +32,14 @@ const HomeScreen = () => {
       [],
       (_,res) => {
         let user = res.row.length;
-        if (user == 0){
-          Alert.alert('Invalid User', 'Username and password are invalid!');
+        if (user >= 1){
+          Alert.alert('Invalid User', 'Username already exist!');
           return;
         } else {
-          let item = res.rows.item(0);
-          let isPasswordCorrect = bcrypt.compareSync(password, item.password);
-          if (!isPasswordCorrect){
-            Alert.alert('Invalid User', 'Username and password are invalid!');
-            return;
-          }
-
-          if (user != 0 && isPasswordCorrect) {
-            navigation.navigate('Start Shopping!');
-          }
+          let salt = bcrypt.genSaltSync(10);
+          let hash = bcrypt.hashSync(username, salt);
+          database.addUser(username,hash);
+          navigation.navigate('Home');
         }
       },
       error => {
@@ -117,11 +112,11 @@ const HomeScreen = () => {
         accessibilityHint='Goes to lists screen'
           style={styles.button}
           onPress={() => onSubmit()}>
-          <Text style={styles.buttonText}>Sign In</Text>
+          <Text style={styles.buttonText}>Sign Up</Text>
         </Pressable>
       </View>
     </View>
   );
 };
 
-export default HomeScreen;
+export default SignUpScreen;
